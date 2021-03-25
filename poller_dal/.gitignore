@@ -28,4 +28,4 @@ poller_dal-*.tar
 
 # Temp db related
 /db
-/scokets
+/sockets
