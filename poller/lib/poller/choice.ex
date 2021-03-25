@@ -4,7 +4,7 @@ defmodule Poller.Choice do
   defstruct(
     id: nil,
     description: nil,
-    perty: nil
+    party: nil
   )
 
   def new(id, description, party) do
