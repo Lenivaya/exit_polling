@@ -2,8 +2,8 @@ import Config
 
 config :poller_dal, PollerDal.Repo,
   database: "poller_#{Mix.env()}",
-  username: "user",
-  password: "pass",
+  username: "postgres",
+  password: "postgres",
   hostname: "localhost"
 
 config :poller_dal,
