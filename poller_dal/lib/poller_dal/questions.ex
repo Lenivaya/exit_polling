@@ -28,6 +28,11 @@ defmodule PollerDal.Questions do
     |> Repo.delete()
   end
 
+  def change_question(%Question{} = question) do
+    question
+    |> Question.changeset(%{})
+  end
+
   def list_questions(), do: Repo.all(Question)
 
   def get_question!(id), do: Repo.get!(Question, id)

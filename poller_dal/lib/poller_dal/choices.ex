@@ -1,6 +1,7 @@
 defmodule PollerDal.Choices do
   import Ecto.Query
   alias PollerDal.Repo
+
   alias PollerDal.Choices.Choice
 
   def list_choices_by_question_id(question_id) do
@@ -31,9 +32,9 @@ defmodule PollerDal.Choices do
     |> Repo.update()
   end
 
-  def change_choice(%Choice{} = choice, attrs) do
+  def change_choice(%Choice{} = choice) do
     choice
-    |> Choice.changeset(attrs)
+    |> Choice.changeset(%{})
   end
 
   def delete_choice(%Choice{} = choice) do
@@ -44,4 +45,8 @@ defmodule PollerDal.Choices do
   def list_choices(), do: Repo.all(Choice)
 
   def get_choice!(id), do: Repo.get!(Choice, id)
+
+  defdelegate parties, to: Choice
+  defdelegate party_ids, to: Choice
+  defdelegate party_description(id), to: Choice
 end

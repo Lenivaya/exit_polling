@@ -19,6 +19,10 @@ defmodule PollerDal.Districts do
     |> Repo.delete()
   end
 
+  def change_district(%District{} = district) do
+    District.changeset(district, %{})
+  end
+
   def list_districts, do: Repo.all(District)
 
   def get_district!(id), do: Repo.get!(District, id)
