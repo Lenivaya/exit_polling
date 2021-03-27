@@ -16,7 +16,9 @@ mkShell {
     export PGDATA="$PWD/db"
     export SOCKET_DIRECTORIES="$PWD/sockets"
     mkdir $SOCKET_DIRECTORIES
-    initdb
+    if ! [ -d $PGDATA ]; then
+      initdb
+    fi
     echo "unix_socket_directories = '$SOCKET_DIRECTORIES'" >> $PGDATA/postgresql.conf
     pg_ctl -l $PGDATA/logfile start
     createuser postgres --createdb -h localhost
