@@ -4,7 +4,8 @@ defmodule PollerDal.Repo.Migrations.CreateChoices do
   def change do
     create table(:choices) do
       add(:description, :string)
-      add(:party, :string)
+      add(:votes, :integer)
+      add(:party, :integer)
       add(:question_id, references(:questions, on_delete: :delete_all))
 
       timestamps()
