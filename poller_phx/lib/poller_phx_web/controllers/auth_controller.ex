@@ -10,7 +10,13 @@ defmodule PollerPhxWeb.AuthController do
     |> login_by_email_and_password(email, password)
     |> handle_login_response()
   end
-  
+
+  def delete(conn, _params) do
+    conn
+    |> configure_session(drop: true)
+    |> redirect(to: Routes.page_path(conn, :index))
+  end
+
   defp login_by_email_and_password(conn, email, password) do
     case Users.authenticate(email, password) do
       {:ok, user} -> {:ok, login(conn, user)}
@@ -41,12 +47,6 @@ defmodule PollerPhxWeb.AuthController do
     conn
     |> put_flash(:error, "Invalid Password!")
     |> render("new.html")
-  end
-  
-  def delete(conn, _params) do
-    conn
-    |> configure_session(drop: true)
-    |> redirect(to: Routes.page_path(conn, :index))
   end
   
 end
