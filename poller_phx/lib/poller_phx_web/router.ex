@@ -12,6 +12,8 @@ defmodule PollerPhxWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug :fetch_session
+    plug PollerPhxWeb.Plugs.Auth
   end
 
   scope "/", PollerPhxWeb do
@@ -36,10 +38,20 @@ defmodule PollerPhxWeb.Router do
     resources "/:district_id/questions/:question_id/choices", ChoiceController, except: [:show]
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", PollerPhxWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", PollerPhxWeb.Api do
+    pipe_through :api
+
+    get "/districts", DistrictController, :index
+    get "/districts/:district_id", DistrictController, :show
+    get "/districts/:district_id/questions", QuestionController, :index
+    get "/questions/:question_id/choices", ChoiceController, :index
+  end
+
+  scope "/api", PollerPhxWeb.Api do
+    pipe_through [:api, :valid_user]
+
+    put "/districts/:district_id/choices/:choice_id", ChoiceController, :vote
+  end
 
   # Enables LiveDashboard only for development
   #
