@@ -14,11 +14,9 @@
     </header>
     <section>
       <main role="main" class="container">
-        <p class="info"><%= get_flash(@conn, :info) %></p>
-        <p class="error"><%= get_flash(@conn, :error) %></p>
-        <%= @inner_content %>
+        <div id="app"></div>
       </main>
     </section>
-    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/poll.js") %>"></script>
   </body>
 </html>

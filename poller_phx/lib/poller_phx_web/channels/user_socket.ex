@@ -1,6 +1,8 @@
 defmodule PollerPhxWeb.UserSocket do
   use Phoenix.Socket
 
+  channel("district:*", PollerPhxWeb.ResultChannel)
+
   ## Channels
   # channel "room:*", PollerPhxWeb.RoomChannel
 

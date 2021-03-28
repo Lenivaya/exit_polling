@@ -53,6 +53,12 @@ defmodule PollerPhxWeb.Router do
     put "/districts/:district_id/choices/:choice_id", ChoiceController, :vote
   end
 
+  scope "/app", PollerPhxWeb do
+    pipe_through :browser
+
+    get "/*path", AppController, :index
+  end
+
   # Enables LiveDashboard only for development
   #
   # If you want to use the LiveDashboard in production, you should put
