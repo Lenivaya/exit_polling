@@ -4,5 +4,5 @@
 tmp/
 
 # Temp db related
-/db
-/sockets
+db/
+sockets/
