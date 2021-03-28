@@ -26,6 +26,3 @@ poller_dal-*.tar
 # Temporary files for e.g. tests
 /tmp
 
-# Temp db related
-/db
-/sockets
