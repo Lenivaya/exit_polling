@@ -19,6 +19,7 @@
         method: :delete %>
       <% else %>
         <%= link "Login", to: Routes.auth_path(@conn, :new)%>
+        <%= link "Sign up", to: Routes.user_path(@conn, :new)%>
       <% end %>
     </div>
   </div>
